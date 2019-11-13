@@ -1,10 +1,10 @@
-import { configure } from '@storybook/react';
-// make CSS available to Storybook
-import '../src/index.css';
+import { configure } from '@storybook/react'
+import requireContext from 'require-context.macro'
 
-// By default Storybook looks for stories in a /stories directory.
-// In this project, we want Storybook to look for stories inside /src directory
-const req = require.context('../src', true, /\.stories.js$/);
+// make CSS available to Storybook
+import '../src/index.css'
+
+const req = requireContext('../src/components', true, /\.stories\.js$/);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));
