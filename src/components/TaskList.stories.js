@@ -24,3 +24,11 @@ storiesOf('TaskList', module)
   .add('withPinnedTasks', () => <TaskList tasks={withPinnedTasks} {...actions} />)
   .add('loading', () => <TaskList loading tasks={[]} {...actions} />)
   .add('empty', () => <TaskList tasks={[]} {...actions} />);
+
+
+
+/*
+addDecorator() allows us to add some “context” to the rendering of each task (like adding padding around the list).
+In this case we’re using a decorator to add styling, 
+but it can be used also to wrap stories in “providers” (library components)
+*/ 
