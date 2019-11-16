@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Task from './Task'
 
 export default class TaskList extends React.Component {
@@ -58,3 +59,14 @@ export default class TaskList extends React.Component {
     );
   }
 }
+
+TaskList.propTypes = {
+  loading: PropTypes.bool,
+  tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+  onPinTask: PropTypes.func.isRequired,
+  onArchiveTask: PropTypes.func.isRequired,
+};
+
+TaskList.defaultProps = {
+  loading: false,
+};
