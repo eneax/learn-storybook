@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Task from './Task'
+import { connect } from 'react-redux'
+import { archiveTask, pinTask } from '../lib/redux'
 
 
-const TaskList = ({ loading, tasks, onPinTask, onArchiveTask }) => {
+export const PureTaskList = ({ loading, tasks, onPinTask, onArchiveTask }) => {
   const events = {
     onPinTask,
     onArchiveTask
@@ -16,7 +18,7 @@ const TaskList = ({ loading, tasks, onPinTask, onArchiveTask }) => {
         <span>Loading</span> <span>cool</span> <span>state</span>
       </span>
     </div>
-  );
+  )
 
   if (loading) {
     return (
@@ -28,7 +30,7 @@ const TaskList = ({ loading, tasks, onPinTask, onArchiveTask }) => {
         {LoadingRow}
         {LoadingRow}
       </div>
-    );
+    )
   }
 
   if (tasks.length === 0) {
@@ -40,13 +42,13 @@ const TaskList = ({ loading, tasks, onPinTask, onArchiveTask }) => {
           <div className="subtitle-message">Sit back and relax</div>
         </div>
       </div>
-    );
+    )
   }
 
   const tasksInOrder = [
     ...tasks.filter(t => t.state === 'TASK_PINNED'),
     ...tasks.filter(t => t.state !== 'TASK_PINNED'),
-  ];
+  ]
 
   return (
     <div className="list-items">
@@ -54,19 +56,26 @@ const TaskList = ({ loading, tasks, onPinTask, onArchiveTask }) => {
         <Task key={task.id} task={task} {...events} />
       ))}
     </div>
-  );
-
+  )
 }
 
-TaskList.propTypes = {
+PureTaskList.propTypes = {
   loading: PropTypes.bool,
   tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
   onPinTask: PropTypes.func.isRequired,
   onArchiveTask: PropTypes.func.isRequired,
-};
+}
 
-TaskList.defaultProps = {
+PureTaskList.defaultProps = {
   loading: false,
-};
+}
 
-export default TaskList
+export default connect(
+  ({ tasks }) => ({
+    tasks: tasks.filter(t => t.state === 'TASK_INBOX' || t.state === 'TASK_PINNED'),
+  }),
+  dispatch => ({
+    onArchiveTask: id => dispatch(archiveTask(id)),
+    onPinTask: id => dispatch(pinTask(id)),
+  })
+)(PureTaskList)
