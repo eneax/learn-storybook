@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { PureTaskList } from './TaskList'
+import { PureTaskList } from '../components/TaskList'
 import { task, actions } from './Task.stories'
 
 
