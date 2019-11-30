@@ -1,10 +1,10 @@
 import React, { Fragment } from "react"
 import { AddonPanel } from "@storybook/components"
-import { addons, types } from "@storybook/addons"
 import { useParameter } from "@storybook/api"
+import { addons, types } from "@storybook/addons"
 
 const Content = () => {
-  const results = useParameter("assets", []);
+  const results = useParameter("assets", [])
 
   return (
     <Fragment>
@@ -25,7 +25,7 @@ addons.register("my/design-assets", () => {
     type: types.PANEL,
     render: ({ active, key }) => (
       <AddonPanel active={active} key={key}>
-        implement
+        <Content />
       </AddonPanel>
     )
   })
