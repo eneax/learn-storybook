@@ -13,36 +13,17 @@ export const task = {
 }
 
 export const actions = {
-  onArchiveTask: action('onArchiveTask'),
   onPinTask: action('onPinTask'),
+  onArchiveTask: action('onArchiveTask'),
 }
 
-const longTitle = `This task's name is absurdly large. In fact, I think if I keep going I might end up with content overflow. What will happen? The star that represents a pinned task could have text overlapping. The text could cut-off abruptly when it reaches the star. I hope not`;
+const longTitle = `This task's name is absurdly large. In fact, I think if I keep going I might end up with content overflow. What will happen? The star that represents a pinned task could have text overlapping. The text could cut-off abruptly when it reaches the star. I hope not!`
 
-storiesOf("Task", module)
+storiesOf('Task', module)
   .addDecorator(withKnobs)
-  .addParameters({
-    assets: [
-      "path/to/your/asset.png",
-      "path/to/another/asset.png",
-      "path/to/yet/another/asset.png"
-    ]
-  })
   .add('default', () => {
     return <Task task={object('task', { ...task })} {...actions} />
   })
   .add('pinned', () => <Task task={{ ...task, state: 'TASK_PINNED' }} {...actions} />)
   .add('archived', () => <Task task={{ ...task, state: 'TASK_ARCHIVED' }} {...actions} />)
   .add('long title', () => <Task task={{ ...task, title: longTitle }} {...actions} />)
-
-
-
-/*
-Storybook has 2 levels of organization: the component itself and its child stories.
-Each story is a variation of a component and you can have as many stories per component as you need.
-
-To initiate Storybook we first call the `storiesOf()` function to register the component.
-We add a display name for the component (i.e. 'default', 'pinned', 'archived')
-
-To define our stories, we call `.add()` once for each of our test states to generate a story.
-*/
