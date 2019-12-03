@@ -11,7 +11,7 @@ const store = {
   getState: () => {
     return {
       tasks: defaultTasks,
-    };
+    }
   },
   subscribe: () => 0,
   dispatch: action('dispatch'),
@@ -21,4 +21,3 @@ storiesOf('InboxScreen', module)
   .addDecorator(story => <Provider store={store}>{story()}</Provider>)
   .add('default', () => <PureInboxScreen />)
   .add('error', () => <PureInboxScreen error="Something" />)
-  
