@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+
 import { PureTaskList } from '../components/TaskList'
 import { task, actions } from './Task.stories'
-
 
 export const defaultTasks = [
   { ...task, id: '1', title: 'Task 1' },
@@ -24,10 +24,3 @@ storiesOf('TaskList', module)
   .add('withPinnedTasks', () => <PureTaskList tasks={withPinnedTasks} {...actions} />)
   .add('loading', () => <PureTaskList loading tasks={[]} {...actions} />)
   .add('empty', () => <PureTaskList tasks={[]} {...actions} />)
-
-
-/*
-addDecorator() allows us to add some “context” to the rendering of each task (like adding padding around the list).
-In this case we’re using a decorator to add styling, 
-but it can be used also to wrap stories in “providers” (library components)
-*/ 
