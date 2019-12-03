@@ -14,7 +14,7 @@ export const PureInboxScreen = ({ error }) => {
           <div className="subtitle-message">Something went wrong</div>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -31,10 +31,10 @@ export const PureInboxScreen = ({ error }) => {
 
 PureInboxScreen.propTypes = {
   error: PropTypes.string,
-};
+}
 
 PureInboxScreen.defaultProps = {
   error: null,
-};
+}
 
-export default connect(({ error }) => ({ error }))(PureInboxScreen);
+export default connect(({ error }) => ({ error }))(PureInboxScreen)
